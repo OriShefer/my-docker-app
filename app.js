@@ -1,21 +1,16 @@
 const http = require('http')
-const sharp = require('sharp')
+const { createCanvas } = require('canvas')
 
 const server = http.createServer((req, res) => {
-  sharp({
-    create: {
-      width: 100,
-      height: 100,
-      channels: 3,
-      background: { r: 0, g: 128, b: 255 }
-    }
-  })
-    .png()
-    .toBuffer()
-    .then(buffer => {
-      res.writeHead(200, { 'Content-Type': 'image/png' })
-      res.end(buffer)
-    })
+  const canvas = createCanvas(200, 200)
+  const ctx = canvas.getContext('2d')
+  ctx.fillStyle = '#0080ff'
+  ctx.fillRect(0, 0, 200, 200)
+  ctx.fillStyle = '#ffffff'
+  ctx.font = '30px sans-serif'
+  ctx.fillText('Hello Docker!', 30, 110)
+  res.writeHead(200, { 'Content-Type': 'image/png' })
+  res.end(canvas.toBuffer())
 })
 
 server.listen(3000, () => {

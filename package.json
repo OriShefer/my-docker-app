@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/OriShefer/my-docker-app#readme",
   "dependencies": {
+    "canvas": "^3.2.3",
     "sharp": "^0.34.5"
   }
 }
